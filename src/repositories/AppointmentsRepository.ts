@@ -8,12 +8,31 @@ export default class AppointmentsRepository {
     this.appointments = [];
   }
 
+  /**
+   * Retorna Todos os repositorios cadastrados.
+   */
+
+  public all(): Appointment[] {
+    return this.appointments;
+  }
+
+  /**
+   * Cria um agendamento.
+   * @param provider Nome do barbeiro
+   * @param date Data do agendamento
+   */
+
   public create(provider: string, date: Date): Appointment {
     const appointment = new Appointment(provider, date);
 
     this.appointments.push(appointment);
     return appointment;
   }
+
+  /**
+   * Procura se a data já está cadastrada.
+   * @param date Data a ser procurada
+   */
 
   public findByDate(date: Date): Appointment | null {
     return (
