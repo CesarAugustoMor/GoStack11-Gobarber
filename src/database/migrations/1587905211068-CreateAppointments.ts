@@ -6,13 +6,14 @@ export default class CreateAppointments1587905211068
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'appointements',
+        name: 'appointments',
         columns: [
           {
             name: 'id',
             type: 'varchar',
             isPrimary: true,
             generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
             isNullable: false,
           },
           {
@@ -31,6 +32,6 @@ export default class CreateAppointments1587905211068
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('appointements');
+    await queryRunner.dropTable('appointments');
   }
 }
