@@ -8,7 +8,8 @@
 # testing
 /coverage
 /uploads
-/tmp
+tmp/*
+!tmp/.gitkeep
 
 # production
 /build
