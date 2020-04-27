@@ -1,12 +1,11 @@
 /* eslint-disable class-methods-use-this */
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateAppointments1587905211068
-  implements MigrationInterface {
+export default class CreateUsers1587989784661 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'appointments',
+        name: 'users',
         columns: [
           {
             name: 'id',
@@ -14,17 +13,20 @@ export default class CreateAppointments1587905211068
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
-            isNullable: false,
           },
           {
-            name: 'provider',
+            name: 'name',
+            type: 'varchar',
+          },
+          {
+            name: 'email',
             type: 'varchar',
             isNullable: false,
+            isUnique: true,
           },
           {
-            name: 'date',
-            type: 'timestamp with time zone',
-            isNullable: false,
+            name: 'passaword',
+            type: 'varchar',
           },
           {
             name: 'created_at',
@@ -42,6 +44,6 @@ export default class CreateAppointments1587905211068
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('appointments');
+    await queryRunner.dropTable('users');
   }
 }
