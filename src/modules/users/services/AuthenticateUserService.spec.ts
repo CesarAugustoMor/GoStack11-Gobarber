@@ -35,21 +35,48 @@ describe('AuthenticateUser', () => {
     expect(response.user).toEqual(user);
   });
 
-  // it('shuld not be able to create two users with the same email', async () => {
-  //   const fakeUsersRepository = new FakeUsersRepository();
-  //   const createUser = new AuthenticateUserService(fakeUsersRepository);
+  it('shuld not be able to authenticate with non existing user', async () => {
+    const fakeUsersRepository = new FakeUsersRepository();
+    const fakeHashProvider = new FakeHashProvider();
 
-  //   await createUser.execute({
-  //     name: 'John Doe',
-  //     email: 'johndoe@exemple.com',
-  //     password: '12345678',
-  //   });
-  //   expect(
-  //     createUser.execute({
-  //       name: 'John Doe',
-  //       email: 'johndoe@exemple.com',
-  //       password: '12345678',
-  //     }),
-  //   ).rejects.toBeInstanceOf(AppError);
-  // });
+    const authenticateUser = new AuthenticateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+
+    expect(
+      authenticateUser.execute({
+        email: 'johndoe@exemple.com',
+        password: '12345678',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('shuld not be able to authenticate with wrong password', async () => {
+    const fakeUsersRepository = new FakeUsersRepository();
+    const fakeHashProvider = new FakeHashProvider();
+
+    const createUser = new CreateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+
+    const authenticateUser = new AuthenticateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+
+    await createUser.execute({
+      name: 'John Doe',
+      email: 'johndoe@exemple.com',
+      password: '12345678',
+    });
+
+    expect(
+      authenticateUser.execute({
+        email: 'johndoe@exemple.com',
+        password: 'wrong-password',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
