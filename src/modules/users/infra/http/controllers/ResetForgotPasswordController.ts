@@ -17,6 +17,6 @@ export default class ResetForgotPasswordController {
       password,
     });
 
-    return res.status(204);
+    return res.status(204).send();
   }
 }
