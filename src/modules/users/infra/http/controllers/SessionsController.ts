@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
 
-export default class SeeeionsController {
+export default class SessionsController {
   /**
    * create
    */
