@@ -10,6 +10,7 @@
 /uploads
 tmp/*
 !tmp/.gitkeep
+todo.md
 
 # production
 /build
