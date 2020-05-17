@@ -17,8 +17,30 @@ export default class EtherealMailProvider implements IMailProvider {
         },
       });
 
-      this.client = tranporter;
-    });
+        this.client = tranporter;
+      })
+      .catch(err => {
+        // eslint-disable-next-line no-console
+        console.log('--------------------------------------------------------');
+        // eslint-disable-next-line no-console
+        console.log('Erro na criação da conta de teste:');
+        // eslint-disable-next-line no-console
+        console.log(err);
+        // eslint-disable-next-line no-console
+        console.log('--------------------------------------------------------');
+
+        const tranporter = nodemailer.createTransport({
+          host: 'smtp.ethereal.email',
+          port: 587,
+          secure: false,
+          auth: {
+            user: 'ernesto.hayes25@ethereal.email',
+            pass: 'TX7kNVWvRTFBZRUgUj',
+          },
+        });
+
+        this.client = tranporter;
+      });
   }
 
   public async sendMail(to: string, body: string): Promise<void> {
