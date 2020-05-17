@@ -8,18 +8,14 @@ export default class UsersController {
    * create
    */
   public async create(req: Request, res: Response): Promise<Response> {
-    try {
-      const { name, email, password } = req.body;
+    const { name, email, password } = req.body;
 
-      const createUser = container.resolve(CreateUserService);
+    const createUser = container.resolve(CreateUserService);
 
-      const user = await createUser.execute({ name, email, password });
+    const user = await createUser.execute({ name, email, password });
 
-      delete user.password;
+    delete user.password;
 
-      return res.json(user);
-    } catch (error) {
-      return res.status(400).json({ error: error.message });
-    }
+    return res.json(user);
   }
 }
