@@ -5,12 +5,12 @@ import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepo
 import ShowUserProfileService from './ShowUserProfileService';
 
 let fakeUsersRepository: FakeUsersRepository;
-let updateUserProfile: ShowUserProfileService;
+let showUserProfile: ShowUserProfileService;
 
 describe('ShowUserProfile', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
-    updateUserProfile = new ShowUserProfileService(fakeUsersRepository);
+    showUserProfile = new ShowUserProfileService(fakeUsersRepository);
   });
 
   it('shuld be able to show the profile', async () => {
@@ -20,7 +20,7 @@ describe('ShowUserProfile', () => {
       password: '12345678',
     });
 
-    const userProfile = await updateUserProfile.execute({
+    const userProfile = await showUserProfile.execute({
       user_id: user.id,
     });
     expect(userProfile.name).toBe('John Doe');
@@ -29,7 +29,7 @@ describe('ShowUserProfile', () => {
 
   it('shuld not be able to show the profile from non-existing user', async () => {
     expect(
-      updateUserProfile.execute({
+      showUserProfile.execute({
         user_id: 'non-existing-user',
       }),
     ).rejects.toBeInstanceOf(AppError);
