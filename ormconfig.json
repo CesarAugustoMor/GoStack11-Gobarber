@@ -24,7 +24,7 @@
     "entities": [
       "./src/modules/**/infra/typeorm/schemas/*.ts"
     ],
-    "url": "mongodb+srv://gobarber:gobarber@cluster0-1lgke.gcp.mongodb.net/test?retryWrites=true&w=majority",
+    "url": "mongodb+srv://gobarber:gobarber@cluster0-1lgke.gcp.mongodb.net/gobarber?retryWrites=true&w=majority",
     "useNewUrlParser": true,
     "synchronize": true,
     "logging": true
