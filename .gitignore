@@ -15,6 +15,7 @@ todo.md
 # production
 /build
 /dist
+ormconfig.json
 
 # misc
 .DS_Store
