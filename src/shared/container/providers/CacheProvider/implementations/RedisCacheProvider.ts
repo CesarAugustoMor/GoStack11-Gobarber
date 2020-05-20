@@ -24,6 +24,10 @@ export default class HandlebarsMailTemplateProvider implements ICacheProvider {
 
   public async invalidate(key: string): Promise<void> {}
 
+  public async invalidateDate(key: string): Promise<void> {
+    await this.client.del(key);
+  }
+
   public async invalidatePrefix(prefix: string): Promise<void> {
     const keys = await this.client.keys(`${prefix}:*`);
 
