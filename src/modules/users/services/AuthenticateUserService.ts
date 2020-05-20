@@ -44,8 +44,6 @@ export default class CreateUserService {
       expiresIn: authConfig.jwt.expiresIn,
     });
 
-    delete user.password;
-
     return { user, token };
   }
 }
