@@ -3,7 +3,7 @@ import IoRedis, { Redis } from 'ioredis';
 import cacheRedis from '@config/cache';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
-export default class HandlebarsMailTemplateProvider implements ICacheProvider {
+export default class RedisCacheProvider implements ICacheProvider {
   private client: Redis;
 
   constructor() {
@@ -22,9 +22,7 @@ export default class HandlebarsMailTemplateProvider implements ICacheProvider {
     return JSON.parse(data) as T;
   }
 
-  public async invalidate(key: string): Promise<void> {}
-
-  public async invalidateDate(key: string): Promise<void> {
+  public async invalidate(key: string): Promise<void> {
     await this.client.del(key);
   }
 

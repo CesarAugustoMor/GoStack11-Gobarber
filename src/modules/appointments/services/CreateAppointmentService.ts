@@ -65,7 +65,7 @@ export default class CreateAppointmentService {
       content: `Novo agendamendo para dia ${dateFormatted}.`,
     });
 
-    await this.cacheProvider.invalidateDate(
+    await this.cacheProvider.invalidate(
       `provider-appointments:${provider_id}:${format(
         appointmentDate,
         'yyyy-M-d',

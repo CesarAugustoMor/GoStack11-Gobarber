@@ -42,9 +42,6 @@ export default class ListProviderAppointmentsService {
         },
       );
 
-      // eslint-disable-next-line no-console
-      console.log('Query no banco realizada!');
-
       await this.cacheProvider.save(cacheKey, appointments);
     }
 

@@ -27,9 +27,6 @@ export default function ensureAuthenticated(
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
-    // eslint-disable-next-line no-console
-    console.log(decoded);
-
     const { sub } = decoded as TokenPayLoad;
 
     request.user = { id: sub };

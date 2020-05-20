@@ -28,9 +28,6 @@ export default class ListProviderService {
         except_user_id: user_id,
       });
 
-      // eslint-disable-next-line no-console
-      console.log('Query no banco realizada!');
-
       await this.cacheProvider.save(`providers-list:${user_id}`, users);
     }
 
