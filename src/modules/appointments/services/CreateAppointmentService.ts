@@ -48,7 +48,9 @@ export default class CreateAppointmentService {
       throw new AppError("You can't create a appointment with yourself.");
     }
 
-    if (await this.appointmentsRepository.findByDate(appointmentDate)) {
+    if (
+      await this.appointmentsRepository.findByDate(appointmentDate, provider_id)
+    ) {
       throw new AppError('This appointment is already booked');
     }
 
