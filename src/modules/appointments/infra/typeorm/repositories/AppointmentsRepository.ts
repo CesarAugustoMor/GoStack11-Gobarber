@@ -60,6 +60,7 @@ export default class AppointmentsRepository implements IAppointmentsRepository {
             `to_char(${dataFildName}, 'DD-MM-YYYY')='${parsedDay}-${parsedMoth}-${year}'`,
         ),
       },
+      relations: ['user'],
     });
     return appointments;
   }

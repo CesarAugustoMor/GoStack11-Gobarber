@@ -1,7 +1,7 @@
+import ListProviderAppointmentsService from '@modules/appointments/services/ListProviderAppointmentsService';
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
-import ListProviderAppointmentsService from '@modules/appointments/services/ListProviderAppointmentsService';
 
 export default class ProviderAppointmentsController {
   /**
@@ -22,6 +22,6 @@ export default class ProviderAppointmentsController {
       day: Number(day),
     });
 
-    return res.json(appointments);
+    return res.json(classToClass(appointments));
   }
 }
