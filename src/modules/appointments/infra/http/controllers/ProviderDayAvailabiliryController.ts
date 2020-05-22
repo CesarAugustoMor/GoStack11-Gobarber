@@ -9,7 +9,7 @@ export default class ProviderDayAvailabiliryController {
    */
   public async index(req: Request, res: Response): Promise<Response> {
     const { provider_id } = req.params;
-    const { month, year, day } = req.body;
+    const { month, year, day } = req.query;
 
     const listProviderAvailabiliry = container.resolve(
       ListProviderDayAvailabiliryService,
@@ -17,9 +17,9 @@ export default class ProviderDayAvailabiliryController {
 
     const providerAvailabiliry = await listProviderAvailabiliry.execute({
       provider_id,
-      month,
-      year,
-      day,
+      month: Number(month),
+      year: Number(year),
+      day: Number(day),
     });
 
     return res.json(providerAvailabiliry);

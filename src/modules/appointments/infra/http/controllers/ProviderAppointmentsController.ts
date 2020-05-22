@@ -9,7 +9,7 @@ export default class ProviderAppointmentsController {
    */
   public async index(req: Request, res: Response): Promise<Response> {
     const provider_id = req.user.id;
-    const { month, year, day } = req.body;
+    const { month, year, day } = req.query;
 
     const listProviderAppointments = container.resolve(
       ListProviderAppointmentsService,
@@ -17,9 +17,9 @@ export default class ProviderAppointmentsController {
 
     const appointments = await listProviderAppointments.execute({
       provider_id,
-      month,
-      year,
-      day,
+      month: Number(month),
+      year: Number(year),
+      day: Number(day),
     });
 
     return res.json(appointments);
