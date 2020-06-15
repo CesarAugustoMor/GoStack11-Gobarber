@@ -1,7 +1,7 @@
+import ListProviderService from '@modules/appointments/services/ListProviderService';
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
-import ListProviderService from '@modules/appointments/services/ListProviderService';
 
 export default class ProvidersController {
   /**
@@ -21,6 +21,6 @@ export default class ProvidersController {
       delete provider.password;
     });
 
-    return res.json(providers);
+    return res.json(classToClass(providers));
   }
 }
